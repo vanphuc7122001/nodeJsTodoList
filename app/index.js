@@ -2,10 +2,13 @@
 
 const yargs = require("yargs"); // es5
 const fs = require("fs"); // fs(file system) build in nodejs
+
 const {
   readAllTasks,
   createTask,
   readDetailTask,
+  updateTask,
+  deleteTask,
 } = require("./model/taskModel");
 
 // node app/index.js test
@@ -35,7 +38,7 @@ yargs.command({
   command: "read-all",
   handler: function () {
     const rs = readAllTasks();
-    console.log("Tasks ", rs);
+    console.log("All Task", rs);
   },
 });
 
@@ -75,10 +78,12 @@ yargs.command({
 
   handler: function (args) {
     const { id, title, description } = args;
-    console.log("udapte#####################");
-    console.log("id", id);
-    console.log("title", title);
-    console.log("description", description);
+    const task = updateTask(id, title, description);
+    if (task) {
+      console.log("task updated", task);
+    } else {
+      console.log("Task is not found");
+    }
   },
 });
 
@@ -92,7 +97,12 @@ yargs.command({
   },
   handler: function (arguments) {
     const { id } = arguments;
-    console.log("delete at id", id);
+    const task = deleteTask(id);
+    if (task) {
+      console.log("Delete Task succeed", task);
+    } else {
+      console.log("Not found !");
+    }
   },
 });
 
