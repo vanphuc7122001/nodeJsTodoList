@@ -25,8 +25,23 @@ const readDetailTask = (id) => {
   return task;
 };
 
+const updateTask = (id, title, description) => {
+  let getAllTask = readAllTasks();
+  const index = getAllTask.findIndex((task) => task.id === id);
+  if (index !== -1) {
+    const oldTask = getAllTask[index];
+    const newTask = { ...oldTask, title, description };
+    getAllTask[index] = newTask;
+    fs.writeFileSync("./app/task.json", JSON.stringify(getAllTask));
+    return newTask;
+  } else {
+    return false;
+  }
+};
+
 module.exports = {
   readAllTasks: readAllTasks,
   createTask: createTask,
   readDetailTask: readDetailTask,
+  updateTask: updateTask,
 };
