@@ -1,0 +1,24 @@
+{
+  "name": "nodejstodolist",
+  "version": "1.0.0",
+  "description": "Node js todolist ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/index.js",
+    "command-create": "node app/index.js create",
+    "command-read-all": "node app/index.js read-all",
+    "command-read-detail": "node app/index.js read-detail",
+    "command-delete": "node app/index.js delete",
+    "command-update": "node app/index.js update",
+    "dev": "nodemon --inspect app/index.js"
+  },
+  "author": "Dang Phuc",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  },
+  "dependencies": {
+    "yargs": "^17.7.1"
+  }
+}
